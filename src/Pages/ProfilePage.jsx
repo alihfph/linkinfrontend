@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import JumbotronProfilePage from "../Components/JumbotronProfilePage";
 import Bio from "../Components/Bio";
 import MutualFriends from "../Components/MutualFriends";
+import Advertisement from "../Components/Advertisement";
 
 export default class ProfilePage extends Component {
   state = {
@@ -48,6 +49,7 @@ export default class ProfilePage extends Component {
             <Bio bioText={this.state.userData.bio} />
           </Col>
           <Col xs={4}>
+            <Advertisement />
             <MutualFriends />
             {/* <AdvertisementBoxes />
             

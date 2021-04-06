@@ -14,7 +14,7 @@ import { Nav, Navbar, Form, FormControl, Container } from "react-bootstrap";
 export default class NavBar extends Component {
   render() {
     return (
-      <Container fluid>
+      <Container fluid style={{ backgroundColor: "white" }} className="mb-5">
         <div className="container">
           <Navbar expand="lg">
             <Form inline>
