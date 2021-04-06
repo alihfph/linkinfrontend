@@ -149,7 +149,13 @@ export default function FooTer() {
             <select
               class="form-control"
               id="exampleFormControlSelect1"
-              style={{ width: "282px", height: "38px", fontSize: "12px" }}
+              style={{
+                width: "282px",
+                height: "38px",
+                fontSize: "12px",
+                backgroundColor: " #f3f2ef",
+                border: "1px solid black",
+              }}
             >
               <option>English</option>
               <option>Turkish</option>
