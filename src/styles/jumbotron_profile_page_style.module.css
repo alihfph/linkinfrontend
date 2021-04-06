@@ -4,13 +4,10 @@ div h1 {
 .hello {
   background-color: blue;
 }
-<<<<<<< Updated upstream
 .imgWrapper {
-    margin-top: -150px;
+  margin-top: -150px;
 }
 
 .borderRound {
-    border-radius: 50%;
+  border-radius: 50%;
 }
-=======
->>>>>>> Stashed changes

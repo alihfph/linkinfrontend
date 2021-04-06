@@ -4,5 +4,11 @@
   padding-left: 0;
   padding-right: 0;
   line-height: 30px;
-  color: #485d69;
+  color: #56687a;
+  font-weight: 600;
+}
+
+.cont {
+  padding-left: 15px;
+  padding-right: 15px;
 }
