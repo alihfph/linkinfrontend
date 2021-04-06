@@ -36,11 +36,11 @@ export default class MutualFriends extends Component {
   render() {
     console.log(this.state.mutualFriends);
     return (
-      <Card className='p-2'>
+      <Card className="p-2">
         <Card.Title>People you may know</Card.Title>
         <ListGroup>
           {this.state.mutualFriends.slice(0, 4).map((user) => (
-            <ListGroup.Item key={user._id}>
+            <ListGroup.Item className="border-0" key={user._id}>
               <UserCard user={user} />
             </ListGroup.Item>
           ))}
