@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import JumbotronProfilePage from "../Components/JumbotronProfilePage";
+import Bio from '../Components/Bio'
 
 export default class ProfilePage extends Component {
   state = {
@@ -39,9 +40,9 @@ export default class ProfilePage extends Component {
       <Container>
         <Row>
           <Col xs={8}>
-            <JumbotronProfilePage thisUser={this.state.userData}/>
-            {/* <Highlights />
-            <Bio /> */}
+            <JumbotronProfilePage thisUser={this.state.userData} />
+            {/* <Highlights /> */}
+            <Bio bioText={this.state.userData.bio}/>
           </Col>
           <Col xs={4}>
             {/* <AdvertisementBoxes />
