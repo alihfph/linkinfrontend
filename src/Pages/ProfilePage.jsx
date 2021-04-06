@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Hero from "../Components/Hero";
+import JumbotronProfilePage from "../Components/JumbotronProfilePage";
 
 export default class ProfilePage extends Component {
   render() {
     return (
       <div>
-        <Hero />
+        <JumbotronProfilePage />
       </div>
     );
   }
