@@ -1,0 +1,8 @@
+.listItem {
+  list-style: none;
+  font-size: 12px;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: 30px;
+  color: #485d69;
+}
