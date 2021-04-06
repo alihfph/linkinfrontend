@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import JumbotronProfilePage from "../Components/JumbotronProfilePage";
 import Bio from "../Components/Bio";
+import MutualFriends from "../Components/MutualFriends";
 
 export default class ProfilePage extends Component {
   state = {
@@ -11,14 +12,13 @@ export default class ProfilePage extends Component {
   getMyData = async () => {
     const andisToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
-    const huseyinToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMWNlNzZmZDIyODAwMTUzZmRiY2EiLCJpYXQiOjE2MTc2OTgwMjQsImV4cCI6MTYxODkwNzYyNH0.i8_OVoYKD6aJYeWLVxhxVP-LTs_CMgF2qLtgiMWiar8";
+
     try {
       let resp = await fetch(
         "https://striveschool-api.herokuapp.com/api/profile/me",
         {
           headers: {
-            Authorization: "Bearer " + huseyinToken,
+            Authorization: "Bearer " + andisToken,
           },
         }
       );
@@ -48,8 +48,9 @@ export default class ProfilePage extends Component {
             <Bio bioText={this.state.userData.bio} />
           </Col>
           <Col xs={4}>
-            {/* <AdvertisementBoxes />
             <MutualFriends />
+            {/* <AdvertisementBoxes />
+            
             <Learning />*/}
           </Col>
         </Row>
