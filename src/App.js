@@ -7,7 +7,12 @@ function App() {
   return (
     <Router>
       <NavBar />
-      <ProfilePage />
+      <Route path = '/profile/me'
+      exact render = {
+          (routeProps) => <ProfilePage {
+            ...routeProps
+          }
+          /> } />
     </Router>
   );
 }
