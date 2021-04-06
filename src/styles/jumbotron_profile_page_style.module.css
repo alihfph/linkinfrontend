@@ -1,6 +1,10 @@
 div h1{
     color: red
 }
-.hello{
-    background-color: blue;
+.imgWrapper {
+    margin-top: -150px;
+}
+
+.borderRound {
+    border-radius: 50%;
 }
