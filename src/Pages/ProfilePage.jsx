@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import JumbotronProfilePage from "../Components/JumbotronProfilePage";
 import Bio from "../Components/Bio";
 import MutualFriends from "../Components/MutualFriends";
@@ -66,7 +66,6 @@ export default class ProfilePage extends Component {
       alert(`There's an error. Check your console.`);
     }
   };
-
 
   componentDidMount = () => {
     this.getMyData().then(() => this.getMyExp(this.state.userData));
