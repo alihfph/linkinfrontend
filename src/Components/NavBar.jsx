@@ -47,7 +47,7 @@ export default class NavBar extends Component {
                   </svg>
                   <p style={{ color: "#00000099" }}>Home</p>
                 </div>
-                <div className="d-flex flex-column align-items-center ml-5">
+                <div className="d-flex flex-column align-items-center ml-4">
                   <svg
                     id="global-nav-icon--mercado__my-network"
                     height="24"

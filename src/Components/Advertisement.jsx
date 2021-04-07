@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 function Advertisement() {
   return (
     <div>
-      <Card className="mb-3">
+      <Card className="mb-3" style={{ borderRadius: "9px" }}>
         <div className="px-1 text-center">
           <img src={image} alt="wow" />
         </div>

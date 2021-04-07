@@ -6,7 +6,7 @@ export default function UserCard(props) {
     <Row>
       <Col xs={3}>
         <img
-          style={{ height: "50px", width: "50px" }}
+          style={{ height: "48px", width: "48px" }}
           className="rounded-circle"
           src={props.user.image}
           alt="friends-pic"
@@ -14,9 +14,20 @@ export default function UserCard(props) {
       </Col>
       <Col xs={9}>
         <strong>{props.user.name}</strong> <br />
-        {props.user.title}
+        <p style={{ fontSize: "12px" }}>{props.user.title} </p>
         <div>
-          <Button>Connect</Button>
+          <Button
+            style={{
+              borderRadius: "30px",
+              backgroundColor: "white",
+              color: "grey",
+              border: "2px solid grey",
+              fontWeight: "600",
+              height: "38px",
+            }}
+          >
+            Connect
+          </Button>
         </div>
       </Col>
     </Row>

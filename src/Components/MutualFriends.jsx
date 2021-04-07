@@ -36,8 +36,10 @@ export default class MutualFriends extends Component {
   render() {
     console.log(this.state.mutualFriends);
     return (
-      <Card className="p-2">
-        <Card.Title>People you may know</Card.Title>
+      <Card className="p-2" style={{ borderRadius: "9px" }}>
+        <Card.Title style={{ fontSize: "16px" }} className="pt-1 pl-1">
+          People you may know
+        </Card.Title>
         <ListGroup>
           {this.state.mutualFriends.slice(0, 4).map((user) => (
             <ListGroup.Item className="border-0" key={user._id}>
