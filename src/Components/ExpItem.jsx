@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 
 export default function ExpItem(props) {
-  console.log(props.exp);
+  //console.log(props.exp);
   return (
     <div>
       <Row>

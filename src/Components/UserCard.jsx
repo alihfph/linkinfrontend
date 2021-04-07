@@ -3,7 +3,7 @@ import { Col, Row, Button } from "react-bootstrap";
 
 export default function UserCard(props) {
   return (
-    <Row>
+    <Row onClick={() => props.history.push('/profile/' + props.user._id)}>
       <Col xs={3}>
         <img
           style={{ height: "48px", width: "48px" }}
@@ -13,8 +13,9 @@ export default function UserCard(props) {
         />
       </Col>
       <Col xs={9}>
-        <strong>{props.user.name}</strong> <br />
-        <p style={{ fontSize: "12px" }}>{props.user.title} </p>
+        <strong >{props.user.name}</strong>
+        <br />
+        <p style={{ fontSize: "12px" }}>{props.user.title}</p>
         <div>
           <Button
             style={{
@@ -24,8 +25,7 @@ export default function UserCard(props) {
               border: "2px solid grey",
               fontWeight: "600",
               height: "38px",
-            }}
-          >
+            }}>
             Connect
           </Button>
         </div>
