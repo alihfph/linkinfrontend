@@ -32,7 +32,7 @@ class Experiences extends Component {
         <ListGroup>
           {this.props.expData.map((exp) => (
             <ListGroup.Item className="border-0" key={exp._id}>
-              <ExpItem userID={this.props.userID} exp={exp} />
+              <ExpItem userID={this.props.userID} exp={exp}  />
             </ListGroup.Item>
           ))}
         </ListGroup>
