@@ -61,7 +61,7 @@ export default function FooTer() {
               </ul>
             </div>
             <div className="col-8">
-              <div className="d-flex flex-column" className={styles.listItem}>
+              <div className={styles.listItem}>
                 <div className="d-flex mb-4">
                   <div className="mr-2">
                     <svg
