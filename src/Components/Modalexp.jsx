@@ -4,13 +4,13 @@ import React from "react";
 class Modalforex extends React.Component {
   state = {
     myNewExp: {
-      role: '',
-      company: '',
-      startDate: '',
-      endDate: '', //could be null
-      description: '',
-      area: '',
-      image: 'https://picsum.photos/200',
+      role: "",
+      company: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+      area: "",
+      image: "https://picsum.photos/200",
     },
   };
 
@@ -27,27 +27,28 @@ class Modalforex extends React.Component {
   };
 
   postNewExp = async (e) => {
-    console.log('event: '+ e)
-    e.preventDefault()
+    console.log("event: " + e);
+    e.preventDefault();
     try {
       const andisToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
       let resp = await fetch(
         `https://striveschool-api.herokuapp.com/api/profile/${this.props.userID}/experiences`,
         {
-          method: 'POST',
+          method: "POST",
           body: JSON.stringify(this.state.myNewExp),
           headers: {
-            'Content-type': 'application/json',
-            Authorization: 'Bearer ' + andisToken,
+            "Content-type": "application/json",
+            Authorization: "Bearer " + andisToken,
           },
         }
       );
       if (resp.ok) {
-        alert('your exp has been saved');
+        alert("your exp has been saved");
         this.props.onHide(false);
+        
       } else {
-        alert('there was a problem');
+        alert("there was a problem");
       }
     } catch (error) {
       console.log(error);
@@ -55,25 +56,20 @@ class Modalforex extends React.Component {
     }
   };
   render() {
-    console.log(this.state.myNewExp)
+    console.log(this.state.myNewExp);
     return (
       <>
         <Modal {...this.props}>
-          <Modal.Header closeButton className='mt-1'>
+          <Modal.Header closeButton className="mt-1">
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
-          <Form
-            className='mx-3 mt-1'
-            onSubmit={
-              this.postNewExp
-            }
-          >
+          <Form className="mx-3 mt-1" onSubmit={this.postNewExp}>
             <Form.Group>
               <Form.Label>Role</Form.Label>
               <Form.Control
-                type='text'
-                placeholder='Role'
-                id='role'
+                type="text"
+                placeholder="Role"
+                id="role"
                 onChange={this.handleInput}
                 value={this.state.myNewExp.role}
               />
@@ -81,28 +77,28 @@ class Modalforex extends React.Component {
             <Form.Group>
               <Form.Label>Company</Form.Label>
               <Form.Control
-                type='text'
-                placeholder='Company'
-                id='company'
+                type="text"
+                placeholder="Company"
+                id="company"
                 onChange={this.handleInput}
                 value={this.state.myNewExp.company}
               />
             </Form.Group>
-            <div className='row'>
-              <Form.Group className='ml-3'>
+            <div className="row">
+              <Form.Group className="ml-3">
                 <Form.Label>start date</Form.Label>
                 <Form.Control
-                  type='date'
-                  id='startDate'
+                  type="date"
+                  id="startDate"
                   onChange={this.handleInput}
                   value={this.state.myNewExp.startDate}
                 />
               </Form.Group>
-              <Form.Group className='ml-5'>
+              <Form.Group className="ml-5">
                 <Form.Label>End date</Form.Label>
                 <Form.Control
-                  type='date'
-                  id='endDate'
+                  type="date"
+                  id="endDate"
                   onChange={this.handleInput}
                   value={this.state.myNewExp.endDate}
                 />
@@ -111,9 +107,9 @@ class Modalforex extends React.Component {
             <Form.Group>
               <Form.Label>Description</Form.Label>
               <Form.Control
-                as='textarea'
+                as="textarea"
                 rows={3}
-                id='description'
+                id="description"
                 onChange={this.handleInput}
                 value={this.state.myNewExp.description}
               />
@@ -121,9 +117,9 @@ class Modalforex extends React.Component {
             <Form.Group>
               <Form.Label>Area</Form.Label>
               <Form.Control
-                type='text'
-                placeholder='Area'
-                id='area'
+                type="text"
+                placeholder="Area"
+                id="area"
                 onChange={this.handleInput}
                 value={this.state.myNewExp.area}
               />
@@ -131,14 +127,14 @@ class Modalforex extends React.Component {
 
             <Modal.Footer>
               <Button
-                variant='secondary'
+                variant="secondary"
                 onClick={() => {
                   this.props.onHide(false);
                 }}
               >
                 Close
               </Button>
-              <Button variant='primary' type='submit'>
+              <Button variant="primary" type="submit">
                 Save Changes
               </Button>
             </Modal.Footer>

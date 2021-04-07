@@ -1,8 +1,28 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 
 export default function ExpItem(props) {
-  console.log(props.exp);
+const deleteExp = async (userID) => {
+        const andisToken =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
+        try {
+          let resp = await fetch(
+            `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`,
+            { method: "DELETE",
+              headers: {
+                Authorization: "Bearer " + andisToken,
+              },
+            }
+          );
+          if (resp.ok) {
+            alert(`Experience Delete`);
+          } else {
+          }
+        } catch (error) {
+          console.log(error);
+          alert(`There's an error. Check your console.`);
+        }
+      };
   return (
     <div>
       <Row>
@@ -14,9 +34,12 @@ export default function ExpItem(props) {
             alt="Logo employer"
           />
         </Col>
-        <Col xs={9}>
+        <Col xs={7}>
           <strong>{props.exp.company}</strong> <br />
           {props.exp.role}
+        </Col>
+        <Col xs={2}>
+          <Button onClick={()=>deleteExp(props.userID)} variant="danger">Delete</Button>
         </Col>
       </Row>
     </div>

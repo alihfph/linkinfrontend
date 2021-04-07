@@ -73,13 +73,13 @@ export default class ProfilePage extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <Container>
         <Modalexp
           userID={this.state.userData._id}
           show={this.state.modalShow}
           onHide={this.setModalShow}
+          getMyExp={this.getMyExp}
         />
         <Row>
           <Col xs={8}>
