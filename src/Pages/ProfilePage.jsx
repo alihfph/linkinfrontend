@@ -93,7 +93,6 @@ export default class ProfilePage extends Component {
   componentDidMount = () => {
     this.getMyData()
       .then(() => this.getMyExp(this.state.userData))
-      .then(() => this.postNewExp(this.state.userData));
   };
 
   render() {
