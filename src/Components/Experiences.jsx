@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, ListGroup, Button } from "react-bootstrap";
 import ExpItem from "./ExpItem";
 
 class Experiences extends Component {
@@ -40,7 +40,16 @@ class Experiences extends Component {
   render() {
     return (
       <Card className="p-2">
-        <Card.Title>Experiences</Card.Title>
+        <Card.Title>
+          Experiences{" "}
+          <Button
+            onClick={() => {
+              this.props.setModalShow(true);
+            }}
+          >
+            +
+          </Button>
+        </Card.Title>
         <ListGroup>
           {this.props.expData.map((exp) => (
             <ListGroup.Item className="border-0" key={exp._id}>

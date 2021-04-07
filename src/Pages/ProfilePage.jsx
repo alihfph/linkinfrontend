@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Button } from "react-bootstrap";
 import JumbotronProfilePage from "../Components/JumbotronProfilePage";
 import Bio from "../Components/Bio";
 import MutualFriends from "../Components/MutualFriends";
 import Advertisement from "../Components/Advertisement";
 import Experiences from "../Components/Experiences";
+import Modalexp from "../Components/Modalexp";
 
 export default class ProfilePage extends Component {
   state = {
     userData: {},
     expData: [],
+    modalShow: false,
     myNewExp: {
       role: "CEO",
       company: "Random Company Inc",
@@ -21,6 +23,9 @@ export default class ProfilePage extends Component {
     },
   };
 
+  setModalShow = (bool) => {
+    this.setState({ modalShow: bool });
+  };
   getMyData = async () => {
     const andisToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
@@ -70,12 +75,12 @@ export default class ProfilePage extends Component {
       alert(`There's an error. Check your console.`);
     }
   };
-  postNewExp = async (loggedInUser) => {
+  postNewExp = async (userID) => {
     try {
       const andisToken =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
       let resp = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${loggedInUser._id}/experiences`,
+        `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`,
         {
           method: "POST",
           body: JSON.stringify(this.state.myNewExp),
@@ -91,21 +96,27 @@ export default class ProfilePage extends Component {
   };
 
   componentDidMount = () => {
-    this.getMyData()
-      .then(() => this.getMyExp(this.state.userData))
+    this.getMyData().then(() => this.getMyExp(this.state.userData));
   };
 
   render() {
     console.log(this.state);
     return (
-      // <Modal postNewExp={this.postNewExp}/>
       <Container>
+        <Modalexp
+          myNewExp={this.state.myNewExp}
+          userID={this.state.userData._id}
+          show={this.state.modalShow}
+          onHide={this.setModalShow}
+          postNewExp={this.postNewExp}
+        />
         <Row>
           <Col xs={8}>
             <JumbotronProfilePage thisUser={this.state.userData} />
             {/* <Highlights /> */}
             <Bio bioText={this.state.userData.bio} />
             <Experiences
+              setModalShow={this.setModalShow}
               userID={this.state.userData._id}
               expData={this.state.expData}
             />
