@@ -43,7 +43,7 @@ export default class MutualFriends extends Component {
         <ListGroup>
           {this.state.mutualFriends.slice(0, 4).map((user) => (
             <ListGroup.Item className="border-0" key={user._id}>
-              <UserCard user={user} />
+              <UserCard history={this.props.history} user={user} />
             </ListGroup.Item>
           ))}
         </ListGroup>

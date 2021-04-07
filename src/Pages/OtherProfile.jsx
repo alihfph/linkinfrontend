@@ -1,15 +1,13 @@
-import React, { Component } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import JumbotronProfilePage from "../Components/JumbotronProfilePage";
-import Bio from "../Components/Bio";
-import MutualFriends from "../Components/MutualFriends";
-import Advertisement from "../Components/Advertisement";
-import Experiences from "../Components/Experiences";
-import Modalexp from "../Components/Modalexp";
-import EditUrl from "../Components/EditUrl";
-import Dashboard from "../Components/Dashboard";
+import React, { Component } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import JumbotronProfilePage from '../Components/JumbotronProfilePage';
+import Bio from '../Components/Bio';
+import MutualFriends from '../Components/MutualFriends';
+import Advertisement from '../Components/Advertisement';
+import Experiences from '../Components/Experiences';
+import Modalexp from '../Components/Modalexp';
 
-export default class ProfilePage extends Component {
+export default class OtherProfile extends Component {
   state = {
     userData: {},
     expData: [],
@@ -21,14 +19,14 @@ export default class ProfilePage extends Component {
   };
   getMyData = async () => {
     const andisToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
-
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
     try {
       let resp = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/me",
+        'https://striveschool-api.herokuapp.com/api/profile/' +
+          this.props.match.params.userId,
         {
           headers: {
-            Authorization: "Bearer " + andisToken,
+            Authorization: 'Bearer ' + andisToken,
           },
         }
       );
@@ -44,15 +42,15 @@ export default class ProfilePage extends Component {
     }
   };
 
-  getMyExp = async (loggedInUser) => {
+  getMyExp = async () => {
     const andisToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
     try {
       let resp = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${loggedInUser._id}/experiences`,
+        `https://striveschool-api.herokuapp.com/api/profile/${this.props.match.params.userId}/experiences`,
         {
           headers: {
-            Authorization: "Bearer " + andisToken,
+            Authorization: 'Bearer ' + andisToken,
           },
         }
       );
@@ -73,21 +71,26 @@ export default class ProfilePage extends Component {
     this.getMyData().then(() => this.getMyExp(this.state.userData));
   };
 
-  render() {
+  componentDidUpdate = (prevProps) => {
+    if (prevProps !== this.props) {
+      this.getMyData();
+      this.getMyExp();
+    }
+  }
 
+  render() {
+    console.log(this.props.match.params.userId);
     return (
       <Container>
         <Modalexp
           userID={this.state.userData._id}
           show={this.state.modalShow}
           onHide={this.setModalShow}
-          getMyExp={this.getMyExp}
         />
         <Row>
           <Col xs={8}>
             <JumbotronProfilePage thisUser={this.state.userData} />
             {/* <Highlights /> */}
-            <Dashboard />
             <Bio bioText={this.state.userData.bio} />
             <Experiences
               setModalShow={this.setModalShow}
@@ -96,10 +99,11 @@ export default class ProfilePage extends Component {
             />
           </Col>
           <Col xs={4}>
-            <EditUrl />
             <Advertisement />
             <MutualFriends history={this.props.history}/>
-            {/* <Learning /> */}
+            {/* <AdvertisementBoxes />
+            
+            <Learning />*/}
           </Col>
         </Row>
       </Container>
