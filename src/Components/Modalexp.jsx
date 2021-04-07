@@ -7,7 +7,7 @@ class Modalforex extends React.Component {
       role: '',
       company: '',
       startDate: '',
-      endDate: null, //could be null
+      endDate: '', //could be null
       description: '',
       area: '',
       image: 'https://picsum.photos/200',
