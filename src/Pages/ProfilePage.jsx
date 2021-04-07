@@ -6,6 +6,7 @@ import MutualFriends from "../Components/MutualFriends";
 import Advertisement from "../Components/Advertisement";
 import Experiences from "../Components/Experiences";
 import Modalexp from "../Components/Modalexp";
+import EditUrl from "../Components/EditUrl";
 
 export default class ProfilePage extends Component {
   state = {
@@ -92,6 +93,7 @@ export default class ProfilePage extends Component {
             />
           </Col>
           <Col xs={4}>
+            <EditUrl />
             <Advertisement />
             <MutualFriends />
             {/* <AdvertisementBoxes />

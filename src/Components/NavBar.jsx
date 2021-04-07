@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import { FaLinkedin } from "react-icons/fa";
-import {
-  ImHome,
-  ImDice,
-  ImLibrary,
-  ImPhone,
-  ImClock2,
-  ImDatabase,
-  ImRocket,
-} from "react-icons/im";
-import { Nav, Navbar, Form, FormControl, Container } from "react-bootstrap";
+import { Navbar, Form, FormControl, Container } from "react-bootstrap";
 
 export default class NavBar extends Component {
   render() {
