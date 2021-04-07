@@ -66,25 +66,7 @@ export default class ProfilePage extends Component {
       alert(`There's an error. Check your console.`);
     }
   };
-  // postNewExp = async (userID) => {
-  //   try {
-  //     const andisToken =
-  //       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
-  //     let resp = await fetch(
-  //       `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`,
-  //       {
-  //         method: "POST",
-  //         body: JSON.stringify(this.state.myNewExp),
-  //         headers: {
-  //           "Content-type": "application/json",
-  //           Authorization: "Bearer " + andisToken,
-  //         },
-  //       }
-  //     );
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
 
   componentDidMount = () => {
     this.getMyData().then(() => this.getMyExp(this.state.userData));
