@@ -54,7 +54,9 @@ class NewsFeed extends Component {
                           <Dropdown.Toggle variant='link'></Dropdown.Toggle>
 
                           <Dropdown.Menu>
-                            <Dropdown.Item href='#/action-1'>
+                            <Dropdown.Item onClick={() =>
+                              this.props.setModalShow(true)                              
+                            }>
                               Edit this post
                             </Dropdown.Item>
                             <Dropdown.Item

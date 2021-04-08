@@ -73,27 +73,7 @@ class Homepage extends Component {
   };
 
   setModalShow = async (bool, ExpID) => {
-    // if (bool && ExpID) {
-    //   try {
-    //     const andisToken =
-    //       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
-    //     let resp = await fetch(
-    //       `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences/${ExpID}`,
-    //       {
-    //         method: "GET",
-    //         headers: {
-    //           Authorization: "Bearer " + andisToken,
-    //         },
-    //       }
-    //     );
-    //     let data = await resp.json();
-    //     this.setState({ ...this.state, expToEdit: data });
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // } else {
-    this.setState({ modalShow: bool });
-    // }
+    this.setState({ ...this.state, modalShow: bool });
   };
 
   componentDidMount = () => {
@@ -107,7 +87,7 @@ class Homepage extends Component {
         <ModalPost show={this.state.modalShow} onHide={this.setModalShow} />
         <Row>
           <Col xs={2}>
-          <LSideBar user={this.state.userData}/>
+            <LSideBar user={this.state.userData} />
           </Col>
           <Col xs={7}>
             <StartPost
@@ -116,7 +96,10 @@ class Homepage extends Component {
               setModalShow={this.setModalShow}
             />
             {/* <PostInput />*/}
-            <NewsFeed posts={this.state.arrOfPost} />
+            <NewsFeed
+              posts={this.state.arrOfPost}
+              setModalShow={this.setModalShow}
+            />
           </Col>
           <Col xs={3}>
             <RightBar />
