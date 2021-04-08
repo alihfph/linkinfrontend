@@ -221,7 +221,7 @@ class Modalforex extends React.Component {
                 Close
               </Button>
               <Button variant='primary' type='submit'>
-                Save Changes
+                Save
               </Button>
             </Modal.Footer>
           </Form>

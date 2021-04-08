@@ -9,7 +9,7 @@ class Homepage extends Component {
   state = {
     arrOfPost: [],
     userData: {},
-    selectedPost: {},
+    postToEdit: {},
     modalShow: false,
   };
 
@@ -41,7 +41,7 @@ class Homepage extends Component {
       alert(`There's an error. Check your console.`);
     }
   };
-  
+
   getMyData = async () => {
     const andisToken =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
@@ -72,8 +72,28 @@ class Homepage extends Component {
     this.getMyData();
   };
 
-  setModalShow = async (bool, ExpID) => {
-    this.setState({ ...this.state, modalShow: bool });
+  setModalShow = async (bool, postId) => {
+    if (bool && postId) {
+      try {
+        const andisToken =
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+        let resp = await fetch(
+          `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: 'Bearer ' + andisToken,
+            },
+          }
+        );
+        let data = await resp.json();
+        this.setState({ ...this.state, postToEdit: data, modalShow: bool });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      this.setState({ modalShow: bool, postToEdit: {} });
+    }
   };
 
   componentDidMount = () => {
@@ -84,7 +104,7 @@ class Homepage extends Component {
   render() {
     return (
       <Container>
-        <ModalPost show={this.state.modalShow} onHide={this.setModalShow} />
+        <ModalPost postToEdit={this.state.postToEdit} show={this.state.modalShow} onHide={this.setModalShow} />
         <Row>
           <Col xs={2}>
             <LSideBar user={this.state.userData} />

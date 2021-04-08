@@ -55,7 +55,7 @@ class NewsFeed extends Component {
 
                           <Dropdown.Menu>
                             <Dropdown.Item onClick={() =>
-                              this.props.setModalShow(true)                              
+                              this.props.setModalShow(true, post._id)                              
                             }>
                               Edit this post
                             </Dropdown.Item>

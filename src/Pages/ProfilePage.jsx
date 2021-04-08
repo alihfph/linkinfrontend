@@ -17,7 +17,7 @@ export default class ProfilePage extends Component {
     expToEdit: {},
   };
 
-  setModalShow = async (bool, ExpID,) => {
+  setModalShow = async (bool, ExpID) => {
     if (bool && ExpID) {
       try {
         const andisToken =
