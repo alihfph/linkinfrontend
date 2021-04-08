@@ -3,7 +3,7 @@ import React from "react";
 
 class Modalforex extends React.Component {
   state = {
-    // editedExp: {},
+    isEditing: false,
     myNewExp: {
       role: "",
       company: "",
@@ -14,10 +14,12 @@ class Modalforex extends React.Component {
       image: "https://picsum.photos/200",
     },
   };
-  componentDidMount = () => {
+
+  handleEditing = () => {
     console.log(this.props.expToEdit)
     if (this.props.expToEdit) {
       this.setState({
+        isEditing: true,
         myNewExp: {
           role: this.props.expToEdit.role,
           company: this.props.expToEdit.company,
@@ -28,7 +30,23 @@ class Modalforex extends React.Component {
           image: this.props.expToEdit.image,
         },
       });
+    } else {
+      this.setState({
+        isEditing: false,
+        myNewExp: {
+          role: "",
+          company: "",
+          startDate: "",
+          endDate: "",
+          description: "",
+          area: "",
+          image: "https://picsum.photos/200",
+        },
+      });
     }
+  };
+  componentDidMount = () => {
+    this.handleEditing();
   };
 
   // componentDidUpdate = (prevProps) => {
