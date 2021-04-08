@@ -56,6 +56,7 @@ class Modalforex extends React.Component {
       console.log('!!!!!', this.props.expToEdit)
       this.setState({
         myNewExp: {
+          _id: this.props.expToEdit._id,
           role: this.props.expToEdit.role,
           company: this.props.expToEdit.company,
           startDate: this.props.expToEdit.startDate,
@@ -100,6 +101,7 @@ class Modalforex extends React.Component {
       if (resp.ok) {
         alert('your exp has been saved');
         this.props.onHide(false);
+        this.props.getMyExp();
       } else {
         alert('there was a problem');
       }
@@ -108,15 +110,46 @@ class Modalforex extends React.Component {
       alert(error);
     }
   };
+
+  putExp= async (e) => {
+    e.preventDefault();
+    try {
+      const andisToken =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+      let resp = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${this.props.userID}/experiences/${this.props.expToEdit._id}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(this.state.myNewExp),
+          headers: {
+            'Content-type': 'application/json',
+            Authorization: 'Bearer ' + andisToken,
+          },
+        }
+      );
+      if (resp.ok) {
+        alert('your exp has been saved');
+        this.props.onHide(false);
+        this.props.getMyExp();
+      } else {
+        alert('there was a problem');
+      }
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
+  }
+
+  
   render() {
     //console.log(this.props.expToEdit);
     return (
       <>
         <Modal {...this.props}>
           <Modal.Header closeButton className='mt-1'>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>{this.state.isEditing ? 'Edit your experience' : 'Add an experience'}</Modal.Title>
           </Modal.Header>
-          <Form className='mx-3 mt-1' onSubmit={this.postNewExp}>
+          <Form className='mx-3 mt-1' onSubmit={this.state.isEditing ? this.putExp : this.postNewExp}>
             <Form.Group>
               <Form.Label>Role</Form.Label>
               <Form.Control

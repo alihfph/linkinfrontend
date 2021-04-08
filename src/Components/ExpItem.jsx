@@ -40,7 +40,7 @@ export default function ExpItem(props) {
           {props.exp.role}
         </Col>
         <Col xs={2}>
-          <Button onClick={() => deleteExp(props.userID)} variant="danger">
+          <Button onClick={() => {deleteExp(props.userID); props.getMyExp()}} variant="danger">
             Delete
           </Button>
           <Button

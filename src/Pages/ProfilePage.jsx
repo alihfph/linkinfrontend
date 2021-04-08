@@ -66,12 +66,12 @@ export default class ProfilePage extends Component {
     }
   };
 
-  getMyExp = async (loggedInUser) => {
+  getMyExp = async () => {
     const andisToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
     try {
       let resp = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${loggedInUser._id}/experiences`,
+        `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences`,
         {
           headers: {
             Authorization: "Bearer " + andisToken,
@@ -115,6 +115,7 @@ export default class ProfilePage extends Component {
               setModalShow={this.setModalShow}
               userID={this.state.userData._id}
               expData={this.state.expData}
+              getMyExp={this.getMyExp}
             />
           </Col>
           <Col xs={4}>
