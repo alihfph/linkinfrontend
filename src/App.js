@@ -5,12 +5,21 @@ import OtherProfile from "./Pages/OtherProfile"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 import FooTer from "./Components/FooTer";
+import Homepage from "./Pages/Homepage";
 
 function App() {
   return (
     <Router>
       <NavBar />
       <Switch>
+      <Route
+        path = "/"
+        exact
+        render = {
+            (routeProps) => < Homepage {
+              ...routeProps
+            }
+            />} />
       <Route
         path="/profile/me"
         exact
