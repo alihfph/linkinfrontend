@@ -58,12 +58,12 @@ export default class ModalPost extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Create Post "Need render conditional when edit"
+            Create a post
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Row className="align-content-start">
-            <Col>
+            <Col className="col-1">
               <img
                 style={{ height: "50px", width: "50px" }}
                 className="rounded-circle"
@@ -71,10 +71,20 @@ export default class ModalPost extends Component {
                 alt="Userimage"
               />
             </Col>
-            <Col className="ml-auto">
-              <h4>User Name</h4>
+            <Col className="ml-4">
+              <h4 style={{ fontSize: "16px" }}>User Name</h4>
               <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle
+                  variant="success"
+                  id="dropdown-basic"
+                  style={{
+                    border: "1px solid grey",
+                    backgroundColor: "transparent",
+                    color: "grey",
+                    height: "35px",
+                    borderRadius: " 25px",
+                  }}
+                >
                   Anyone
                 </Dropdown.Toggle>
 
@@ -86,9 +96,10 @@ export default class ModalPost extends Component {
               </Dropdown>
             </Col>
           </Row>
-          <Form className="mx-3 mt-1" onSubmit={this.newPost}>
+          <Form className="mx-3 mt-2" onSubmit={this.newPost}>
             <Form.Group>
               <Form.Control
+                style={{ border: "none" }}
                 as="textarea"
                 placeholder="What do you want to talk about?"
                 rows={3}
@@ -102,10 +113,57 @@ export default class ModalPost extends Component {
                 Choose who can comment on your post
               </Alert>
               <Row>
-                <Col xs={3}>icons</Col>
-                <Col xs={6}>who can comment? with tooltip</Col>
+                <Col xs={3} className="d-flex justify-content-around">
+                  <div className="pl-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      data-supported-dps="24x24"
+                      fill="grey"
+                      class="mercado-match"
+                      width="24"
+                      height="24"
+                      focusable="false"
+                    >
+                      <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
+                    </svg>
+                  </div>
+                  <div className="pl-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      data-supported-dps="24x24"
+                      fill="grey"
+                      class="mercado-match"
+                      width="24"
+                      height="24"
+                      focusable="false"
+                    >
+                      <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l6 4z"></path>
+                    </svg>
+                  </div>
+                  <div className="pl-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      data-supported-dps="24x24"
+                      fill="grey"
+                      class="mercado-match"
+                      width="24"
+                      height="24"
+                      focusable="false"
+                    >
+                      <path d="M3 3v15a3 3 0 003 3h9v-6h6V3zm9 8H6v-1h6zm6-3H6V7h12zm-2 8h5l-5 5z"></path>
+                    </svg>
+                  </div>
+                </Col>
+                <Col xs={6}>who can comment? </Col>
                 <Col xs={3}>
-                  <Button variant="secondary" type="submit">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    style={{ borderRadius: "15px", padding: "3px 18px" }}
+                  >
                     Post
                   </Button>
                 </Col>

@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 
 function RightBar() {
   return (
-    <div>
+    <>
       <ListGroup as="ul" className="mb-3" style={{ borderRadius: "8px" }}>
         <ListGroup.Item as="li">
           Add to your feed
@@ -213,7 +213,7 @@ function RightBar() {
           LinkedIn Corporation © 2021
         </span>
       </div>
-    </div>
+    </>
   );
 }
 

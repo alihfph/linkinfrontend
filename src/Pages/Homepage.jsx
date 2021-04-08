@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import ModalPost from "../Components/ModalPost";
 import RightBar from "../Components/RightBar";
+import StartPost from "../Components/StartPost";
 
 class Homepage extends Component {
   state = {
@@ -67,17 +68,11 @@ class Homepage extends Component {
   render() {
     return (
       <Container>
-        <Button
-          onClick={() => {
-            this.setModalShow(true);
-          }}
-        >
-          Open Modal
-        </Button>
         <ModalPost show={this.state.modalShow} onHide={this.setModalShow} />
         <Row>
           <Col xs={2}>{/* <LSideBar />*/}</Col>
           <Col xs={7}>
+            <StartPost setModalShow={this.setModalShow} />
             {/* <PostInput />
                 <NewsFeed {arrOfPost}/> */}
           </Col>
