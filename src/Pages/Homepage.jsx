@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Button } from "react-bootstrap";
+import ModalPost from "../Components/ModalPost";
 import RightBar from "../Components/RightBar";
 
 class Homepage extends Component {
   state = {
     arrOfPost: [],
     selectedPost: {},
-    showModal: false,
+    modalShow: false,
   };
 
   getPostData = async () => {
@@ -36,27 +37,27 @@ class Homepage extends Component {
   };
 
   setModalShow = async (bool, ExpID) => {
-    if (bool && ExpID) {
-      try {
-        const andisToken =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
-        let resp = await fetch(
-          `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences/${ExpID}`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: "Bearer " + andisToken,
-            },
-          }
-        );
-        let data = await resp.json();
-        this.setState({ ...this.state, expToEdit: data });
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      this.setState({ modalShow: bool });
-    }
+    // if (bool && ExpID) {
+    //   try {
+    //     const andisToken =
+    //       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
+    //     let resp = await fetch(
+    //       `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences/${ExpID}`,
+    //       {
+    //         method: "GET",
+    //         headers: {
+    //           Authorization: "Bearer " + andisToken,
+    //         },
+    //       }
+    //     );
+    //     let data = await resp.json();
+    //     this.setState({ ...this.state, expToEdit: data });
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // } else {
+    this.setState({ modalShow: bool });
+    // }
   };
 
   componentDidMount = () => {
@@ -66,10 +67,14 @@ class Homepage extends Component {
   render() {
     return (
       <Container>
-        {/* <ModalPost
-              showModal={this.state.showModal}
-              show={this.state.modalShow}
-              onHide={this.setModalShow}/> */}
+        <Button
+          onClick={() => {
+            this.setModalShow(true);
+          }}
+        >
+          Open Modal
+        </Button>
+        <ModalPost show={this.state.modalShow} onHide={this.setModalShow} />
         <Row>
           <Col xs={2}>{/* <LSideBar />*/}</Col>
           <Col xs={7}>
