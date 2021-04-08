@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import ModalPost from "../Components/ModalPost";
 import RightBar from "../Components/RightBar";
 import NewsFeed from '../Components/NewsFeed'
+import StartPost from "../Components/StartPost";
 
 class Homepage extends Component {
   state = {
@@ -76,30 +77,9 @@ class Homepage extends Component {
         <Row>
           <Col xs={2}>{/* <LSideBar />*/}</Col>
           <Col xs={7}>
-            <Row className='align-items-center mb-3'>
-              <Col xs={2} className='d-flex justify-content-center'>
-                <img
-                  src='https://picsum.photos/50'
-                  alt='yourPic'
-                  style={{ borderRadius: '50%' }}
-                />
-              </Col>
-              <Col xs={10}>
-                <Button
-                  className='w-100 rounded-pill text-left text-muted '
-                  variant='light'
-                  onClick={() => {
-                    this.setModalShow(true);
-                  }}
-                >
-                  What's on your mind?
-                </Button>
-              </Col>
-            </Row>
-            <NewsFeed
-              handleRef={this.getPostData}
-              posts={this.state.arrOfPost}
-            />
+            <StartPost setModalShow={this.setModalShow} />
+            {/* <PostInput />*/}
+                <NewsFeed posts={this.state.arrOfPost}/> 
           </Col>
           <Col xs={3}>
             <RightBar />
