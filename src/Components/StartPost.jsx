@@ -10,13 +10,14 @@ function StartPost(props) {
             <img
               style={{ borderRadius: "50%" }}
               width="48"
-              src="https://media-exp1.licdn.com/dms/image/C510BAQFybdyJxnwFQA/company-logo_100_100/0/1552144829593?e=1625702400&amp;v=beta&amp;t=77V4sCI4wmdvKPGNBvAvsjEcka3dlTVDz9eNsL-pR-E"
+              src={props.user.image}
               loading="lazy"
               height="48"
-              alt="JavaScript"
+              alt="yourPic"
               id="ember2044"
               class="lazy-image ember-view EntityPhoto-circle-3"
-            ></img>
+              onClick={() => props.history.push('/profile/me')}
+            />
           </div>
           <Button
             style={{ height: "2.4rem", width: "520px" }}

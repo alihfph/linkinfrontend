@@ -8,20 +8,21 @@ import StartPost from "../Components/StartPost";
 class Homepage extends Component {
   state = {
     arrOfPost: [],
+    userData: {},
     selectedPost: {},
     modalShow: false,
   };
 
   getPostData = async () => {
     const andisToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
 
     try {
       let resp = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/",
+        'https://striveschool-api.herokuapp.com/api/posts/',
         {
           headers: {
-            Authorization: "Bearer " + andisToken,
+            Authorization: 'Bearer ' + andisToken,
           },
         }
       );
@@ -29,15 +30,46 @@ class Homepage extends Component {
       if (resp.ok) {
         //console.log(postData)
         this.setState({
-          arrOfPost: postData
+          ...this.state,
+          arrOfPost: postData,
         });
       } else {
-        alert('something wrong in the code')
+        alert('something wrong in the code');
       }
     } catch (err) {
       console.log(err);
       alert(`There's an error. Check your console.`);
     }
+  };
+  
+  getMyData = async () => {
+    const andisToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+
+    try {
+      let resp = await fetch(
+        'https://striveschool-api.herokuapp.com/api/profile/me',
+        {
+          headers: {
+            Authorization: 'Bearer ' + andisToken,
+          },
+        }
+      );
+      let loggedInUser = await resp.json();
+      if (resp.ok) {
+        this.setState({
+          ...this.state,
+          userData: loggedInUser,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      alert(`There's an error. Check your console.`);
+    }
+  };
+
+  componentDidMount = () => {
+    this.getMyData();
   };
 
   setModalShow = async (bool, ExpID) => {
@@ -66,20 +98,24 @@ class Homepage extends Component {
 
   componentDidMount = () => {
     this.getPostData();
-     // console.log(this.state.arrOfPost[1].user);
+    this.getMyData();
+    // console.log(this.state.arrOfPost[1].user);
   };
 
   render() {
-
     return (
       <Container>
         <ModalPost show={this.state.modalShow} onHide={this.setModalShow} />
         <Row>
           <Col xs={2}>{/* <LSideBar />*/}</Col>
           <Col xs={7}>
-            <StartPost setModalShow={this.setModalShow} />
+            <StartPost
+              history={this.props.history}
+              user={this.state.userData}
+              setModalShow={this.setModalShow}
+            />
             {/* <PostInput />*/}
-                <NewsFeed posts={this.state.arrOfPost}/> 
+            <NewsFeed posts={this.state.arrOfPost} />
           </Col>
           <Col xs={3}>
             <RightBar />
