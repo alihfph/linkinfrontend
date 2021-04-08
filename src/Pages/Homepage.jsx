@@ -99,7 +99,6 @@ class Homepage extends Component {
   componentDidMount = () => {
     this.getPostData();
     this.getMyData();
-    // console.log(this.state.arrOfPost[1].user);
   };
 
   render() {
@@ -108,7 +107,7 @@ class Homepage extends Component {
         <ModalPost show={this.state.modalShow} onHide={this.setModalShow} />
         <Row>
           <Col xs={2}>
-          <LSideBar />
+          <LSideBar user={this.state.userData}/>
           </Col>
           <Col xs={7}>
             <StartPost
