@@ -15,6 +15,7 @@ class Modalforex extends React.Component {
     },
   };
   componentDidMount = () => {
+    console.log(this.props.expToEdit)
     if (this.props.expToEdit) {
       this.setState({
         myNewExp: {
@@ -29,6 +30,22 @@ class Modalforex extends React.Component {
       });
     }
   };
+
+  // componentDidUpdate = (prevProps) => {
+  //   console.log('THIS IS prevProps: ', prevProps)
+  //   console.log('THIS IS this.props: ', this.props)
+  //   if (prevProps.expToEdit !== this.props.expToEdit){
+  //     this.setState({
+  //       myNewExp: {
+  //         role: this.props.expToEdit.role,
+  //         company: this.props.expToEdit.company,
+  //         startDate: this.props.expToEdit.startDate,
+  //         endDate: this.props.expToEdit.endDate,
+  //         description: this.props.expToEdit.description,
+  //         area: this.props.expToEdit.area,
+  //         image: this.props.expToEdit.image,
+  //   }})}}
+
   handleInput = (e) => {
     let id = e.target.id; // name or phone or numberOfPersons
     //console.log('ID OF THIS INPUT FIELD IS', id);
@@ -70,7 +87,7 @@ class Modalforex extends React.Component {
     }
   };
   render() {
-    console.log(this.props.expToEdit);
+    //console.log(this.props.expToEdit);
     return (
       <>
         <Modal {...this.props}>

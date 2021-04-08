@@ -32,7 +32,7 @@ export default class ProfilePage extends Component {
           }
         );
         let data = await resp.json();
-        this.setState({ ...this.state, expToEdit: data });
+        this.setState({ ...this.state, expToEdit: data, modalShow: bool });
       } catch (error) {
         console.log(error);
       }
