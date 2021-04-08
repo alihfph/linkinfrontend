@@ -6,7 +6,7 @@ export default class LSidebarSecond extends Component {
     return (
       <>
        
-      <Card
+      <Card className= "mt-2"
       style={{
         borderTopLeftRadius: "15px",
         borderTopRightRadius: "15px",
