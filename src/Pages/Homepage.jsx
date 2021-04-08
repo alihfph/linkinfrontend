@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Container, Col, Row } from "react-bootstrap";
+import ModalPost from "../Components/ModalPost";
+import RightBar from "../Components/RightBar";
+import NewsFeed from '../Components/NewsFeed'
+import StartPost from "../Components/StartPost";
 import LSideBar from '../Components/LSideBar'
-
 class Homepage extends Component {
   state = {
     arrOfPost: [],
+    userData: {},
     selectedPost: {},
-    showModal: false,
+    modalShow: false,
   };
 
   getPostData = async () => {
@@ -24,9 +28,38 @@ class Homepage extends Component {
       );
       let postData = await resp.json();
       if (resp.ok) {
+        //console.log(postData)
         this.setState({
           ...this.state,
           arrOfPost: postData,
+        });
+      } else {
+        alert('something wrong in the code');
+      }
+    } catch (err) {
+      console.log(err);
+      alert(`There's an error. Check your console.`);
+    }
+  };
+  
+  getMyData = async () => {
+    const andisToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+
+    try {
+      let resp = await fetch(
+        'https://striveschool-api.herokuapp.com/api/profile/me',
+        {
+          headers: {
+            Authorization: 'Bearer ' + andisToken,
+          },
+        }
+      );
+      let loggedInUser = await resp.json();
+      if (resp.ok) {
+        this.setState({
+          ...this.state,
+          userData: loggedInUser,
         });
       }
     } catch (err) {
@@ -35,50 +68,60 @@ class Homepage extends Component {
     }
   };
 
+  componentDidMount = () => {
+    this.getMyData();
+  };
+
   setModalShow = async (bool, ExpID) => {
-    if (bool && ExpID) {
-      try {
-        const andisToken =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
-        let resp = await fetch(
-          `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences/${ExpID}`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: 'Bearer ' + andisToken,
-            },
-          }
-        );
-        let data = await resp.json();
-        this.setState({ ...this.state, expToEdit: data });
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      this.setState({ modalShow: bool });
-    }
+    // if (bool && ExpID) {
+    //   try {
+    //     const andisToken =
+    //       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
+    //     let resp = await fetch(
+    //       `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences/${ExpID}`,
+    //       {
+    //         method: "GET",
+    //         headers: {
+    //           Authorization: "Bearer " + andisToken,
+    //         },
+    //       }
+    //     );
+    //     let data = await resp.json();
+    //     this.setState({ ...this.state, expToEdit: data });
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // } else {
+    this.setState({ modalShow: bool });
+    // }
   };
 
   componentDidMount = () => {
     this.getPostData();
+    this.getMyData();
+    // console.log(this.state.arrOfPost[1].user);
   };
 
   render() {
     return (
       <Container>
-        {/* <ModalPost
-              showModal={this.state.showModal}
-              show={this.state.modalShow}
-              onHide={this.setModalShow}/> */}
+        <ModalPost show={this.state.modalShow} onHide={this.setModalShow} />
         <Row>
           <Col xs={2}>
           <LSideBar />
           </Col>
           <Col xs={7}>
-            {/* <PostInput />
-                <NewsFeed {arrOfPost}/> */}
+            <StartPost
+              history={this.props.history}
+              user={this.state.userData}
+              setModalShow={this.setModalShow}
+            />
+            {/* <PostInput />*/}
+            <NewsFeed posts={this.state.arrOfPost} />
           </Col>
-          <Col xs={3}>{/* <RSideBar /> */}</Col>
+          <Col xs={3}>
+            <RightBar />
+          </Col>
         </Row>
       </Container>
     );
