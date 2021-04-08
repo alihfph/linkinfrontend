@@ -99,6 +99,7 @@ class Homepage extends Component {
             <NewsFeed
               posts={this.state.arrOfPost}
               setModalShow={this.setModalShow}
+              handleRef={() => this.handleRef()}
             />
           </Col>
           <Col xs={3}>
