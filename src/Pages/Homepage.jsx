@@ -72,19 +72,34 @@ class Homepage extends Component {
 
     return (
       <Container>
-        <Button
-          onClick={() => {
-            this.setModalShow(true);
-          }}
-        >
-          Open Modal
-        </Button>
         <ModalPost show={this.state.modalShow} onHide={this.setModalShow} />
         <Row>
           <Col xs={2}>{/* <LSideBar />*/}</Col>
           <Col xs={7}>
-            {/* <PostInput /> */}
-           { this.state.arrOfPost.length>0 &&<NewsFeed posts={this.state.arrOfPost}/>}
+            <Row className='align-items-center mb-3'>
+              <Col xs={2} className='d-flex justify-content-center'>
+                <img
+                  src='https://picsum.photos/50'
+                  alt='yourPic'
+                  style={{ borderRadius: '50%' }}
+                />
+              </Col>
+              <Col xs={10}>
+                <Button
+                  className='w-100 rounded-pill text-left text-muted '
+                  variant='light'
+                  onClick={() => {
+                    this.setModalShow(true);
+                  }}
+                >
+                  What's on your mind?
+                </Button>
+              </Col>
+            </Row>
+            <NewsFeed
+              handleRef={this.getPostData}
+              posts={this.state.arrOfPost}
+            />
           </Col>
           <Col xs={3}>
             <RightBar />
