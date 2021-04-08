@@ -3,6 +3,7 @@ import React from "react";
 
 class Modalforex extends React.Component {
   state = {
+    // editedExp: {},
     myNewExp: {
       role: "",
       company: "",
@@ -13,7 +14,21 @@ class Modalforex extends React.Component {
       image: "https://picsum.photos/200",
     },
   };
-
+  componentDidMount = () => {
+    if (this.props.expToEdit) {
+      this.setState({
+        myNewExp: {
+          role: this.props.expToEdit.role,
+          company: this.props.expToEdit.company,
+          startDate: this.props.expToEdit.startDate,
+          endDate: this.props.expToEdit.endDate,
+          description: this.props.expToEdit.description,
+          area: this.props.expToEdit.area,
+          image: this.props.expToEdit.image,
+        },
+      });
+    }
+  };
   handleInput = (e) => {
     let id = e.target.id; // name or phone or numberOfPersons
     //console.log('ID OF THIS INPUT FIELD IS', id);
@@ -46,7 +61,6 @@ class Modalforex extends React.Component {
       if (resp.ok) {
         alert("your exp has been saved");
         this.props.onHide(false);
-        
       } else {
         alert("there was a problem");
       }
@@ -56,7 +70,7 @@ class Modalforex extends React.Component {
     }
   };
   render() {
-    console.log(this.state.myNewExp);
+    console.log(this.props.expToEdit);
     return (
       <>
         <Modal {...this.props}>
