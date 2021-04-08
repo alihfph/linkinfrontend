@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
+import LSideBar from '../Components/LSideBar'
 
 class Homepage extends Component {
   state = {
@@ -70,7 +71,9 @@ class Homepage extends Component {
               show={this.state.modalShow}
               onHide={this.setModalShow}/> */}
         <Row>
-          <Col xs={2}>{/* <LSideBar />*/}</Col>
+          <Col xs={2}>
+          <LSideBar />
+          </Col>
           <Col xs={7}>
             {/* <PostInput />
                 <NewsFeed {arrOfPost}/> */}
