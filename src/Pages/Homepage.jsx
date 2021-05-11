@@ -15,11 +15,11 @@ class Homepage extends Component {
 
   getPostData = async () => {
     const andisToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDQzNzB9.M7l5I2KNC6MFbKkjvlEMlqRG-crngaQG-rHadwQX1Ng';
 
     try {
       let resp = await fetch(
-        'https://striveschool-api.herokuapp.com/api/posts/',
+        'http://localhost:3001/posts',
         {
           headers: {
             Authorization: 'Bearer ' + andisToken,
@@ -44,11 +44,11 @@ class Homepage extends Component {
 
   getMyData = async () => {
     const andisToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDQzNzB9.M7l5I2KNC6MFbKkjvlEMlqRG-crngaQG-rHadwQX1Ng';
 
     try {
       let resp = await fetch(
-        'https://striveschool-api.herokuapp.com/api/profile/me',
+        'http://localhost:3001/profile/me',
         {
           headers: {
             Authorization: 'Bearer ' + andisToken,
@@ -76,9 +76,9 @@ class Homepage extends Component {
     if (bool && postId) {
       try {
         const andisToken =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDQzNzB9.M7l5I2KNC6MFbKkjvlEMlqRG-crngaQG-rHadwQX1Ng';
         let resp = await fetch(
-          `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+          `http://localhost:3001/posts/${postId}`,
           {
             method: 'GET',
             headers: {

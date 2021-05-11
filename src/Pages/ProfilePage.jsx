@@ -21,7 +21,7 @@ export default class ProfilePage extends Component {
     if (bool && ExpID) {
       try {
         const andisToken =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDA4MjJ9.CpamCjh2lRWbvpBv4b4aRNn0TnGRD4fYg3hLFB8WfRw";
         let resp = await fetch(
           `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences/${ExpID}`,
           {
@@ -43,7 +43,7 @@ export default class ProfilePage extends Component {
   
   getMyData = async () => {
     const andisToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDA4MjJ9.CpamCjh2lRWbvpBv4b4aRNn0TnGRD4fYg3hLFB8WfRw";
 
     try {
       let resp = await fetch(
@@ -68,7 +68,7 @@ export default class ProfilePage extends Component {
 
   getMyExp = async () => {
     const andisToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDA4MjJ9.CpamCjh2lRWbvpBv4b4aRNn0TnGRD4fYg3hLFB8WfRw";
     try {
       let resp = await fetch(
         `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences`,
