@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 import FooTer from "./Components/FooTer";
 import Homepage from "./Pages/Homepage";
-
+import SignUp from "./Pages/SignUpPage"
 function App() {
   return (
     <Router>
@@ -24,6 +24,12 @@ function App() {
         path="/profile/me"
         exact
         render={(routeProps) => <ProfilePage {...routeProps} />}
+      />
+        <Route
+        path="/signup"
+        exact
+        render={(routeProps) => <SignUp
+         {...routeProps} />}
       />
       <Route path='/profile/:userId' render={(routeProps) => <OtherProfile {...routeProps} />} />
       </Switch>
