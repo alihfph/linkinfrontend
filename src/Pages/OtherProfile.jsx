@@ -18,15 +18,13 @@ export default class OtherProfile extends Component {
     this.setState({ modalShow: bool });
   };
   getMyData = async () => {
-    const andisToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDQzNzB9.M7l5I2KNC6MFbKkjvlEMlqRG-crngaQG-rHadwQX1Ng';
     try {
       let resp = await fetch(
         'http://localhost:3001/profile/' +
           this.props.match.params.userId,
         {
           headers: {
-            Authorization: 'Bearer ' + andisToken,
+            Authorization: 'Bearer ' + localStorage.getItem("jwt"),
           },
         }
       );
@@ -43,14 +41,12 @@ export default class OtherProfile extends Component {
   };
 
   getMyExp = async () => {
-    const andisToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDQzNzB9.M7l5I2KNC6MFbKkjvlEMlqRG-crngaQG-rHadwQX1Ng';
     try {
       let resp = await fetch(
-        `http://localhost:3001/profile/${this.props.match.params.userId}/experiences`,
+        `profile/${this.props.match.params.userId}/experiences`,
         {
           headers: {
-            Authorization: 'Bearer ' + andisToken,
+            Authorization: 'Bearer ' + localStorage.getItem("jwt"),
           },
         }
       );

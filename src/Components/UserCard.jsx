@@ -13,7 +13,7 @@ export default function UserCard(props) {
         />
       </Col>
       <Col xs={9}>
-        <strong >{props.user.name}</strong>
+        <strong >{props.user.username}</strong>
         <br />
         <p style={{ fontSize: "12px" }}>{props.user.title}</p>
         <div>

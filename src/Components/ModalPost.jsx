@@ -48,16 +48,14 @@ export default class ModalPost extends Component {
   newPost = async (e) => {
     e.preventDefault();
     try {
-      const andisToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
       let resp = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/`,
+        `/posts`,
         {
           method: 'POST',
           body: JSON.stringify(this.state.myNewPost),
           headers: {
             'Content-type': 'application/json',
-            Authorization: 'Bearer ' + andisToken,
+            Authorization: 'Bearer ' + localStorage.getItem("jwt"),
           },
         }
       );

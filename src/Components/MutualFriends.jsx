@@ -8,14 +8,12 @@ export default class MutualFriends extends Component {
   };
 
   getMutualFriends = async () => {
-    const davidToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjNGIzNTZmZDIyODAwMTUzZmRiY2UiLCJpYXQiOjE2MTc3MDk4NzgsImV4cCI6MTYxODkxOTQ3OH0.Oj8Gh3QwA30cjIFBe8hsuCJpduzXOjcNHFbI6hV3IvM";
     try {
       let resp = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/",
+        "/profile/",
         {
           headers: {
-            Authorization: "Bearer " + davidToken,
+            Authorization: 'Bearer ' + localStorage.getItem("jwt"),
           },
         }
       );

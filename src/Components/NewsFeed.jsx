@@ -7,15 +7,14 @@ class NewsFeed extends Component {
   }
   
   deletePost = async (postId) => {
-    const andisToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDZjMGM5YzZmZDIyODAwMTUzZmRiYWMiLCJpYXQiOjE2MTc2OTM4NTIsImV4cCI6MTYxODkwMzQ1Mn0.b_4i8l9HxOmAylxIxWyK1cX9Brjnydu_my16UsNd4PE';
+
     try {
       let resp = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        `/posts/${postId}`,
         {
           method: 'DELETE',
           headers: {
-            Authorization: 'Bearer ' + andisToken,
+            Authorization: 'Bearer ' + localStorage.getItem("jwt"),
           },
         }
       );
@@ -43,7 +42,7 @@ class NewsFeed extends Component {
                     <div className='d-flex d-flex justify-content-between m-0 p0'>
                       <div className='m-0 p0'>
                         <div className='m-0 p0'>
-                          <Card.Title>{post.user.name}</Card.Title>
+                          <Card.Title>{post.user.username}</Card.Title>
                           <Card.Subtitle className='mb-2 text-muted'>
                             {post.user.title}
                           </Card.Subtitle>

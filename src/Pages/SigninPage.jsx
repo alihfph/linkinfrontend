@@ -26,7 +26,7 @@ const Signin = () => {
         } else {
           localStorage.setItem("jwt", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
-          console.log(data.message);
+          // console.log(data.message);
           history.push("/");
         }
       })

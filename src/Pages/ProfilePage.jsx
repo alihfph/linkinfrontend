@@ -20,14 +20,12 @@ export default class ProfilePage extends Component {
   setModalShow = async (bool, ExpID) => {
     if (bool && ExpID) {
       try {
-        const andisToken =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDA4MjJ9.CpamCjh2lRWbvpBv4b4aRNn0TnGRD4fYg3hLFB8WfRw";
         let resp = await fetch(
-          `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences/${ExpID}`,
+          `/profile/${this.state.userData._id}/experiences/${ExpID}`,
           {
             method: "GET",
             headers: {
-              Authorization: "Bearer " + andisToken,
+              Authorization: 'Bearer ' + localStorage.getItem("jwt"),
             },
           }
         );
@@ -42,15 +40,12 @@ export default class ProfilePage extends Component {
   };
   
   getMyData = async () => {
-    const andisToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDA4MjJ9.CpamCjh2lRWbvpBv4b4aRNn0TnGRD4fYg3hLFB8WfRw";
-
     try {
       let resp = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/me",
+        "/profile/me",
         {
           headers: {
-            Authorization: "Bearer " + andisToken,
+            Authorization: 'Bearer ' + localStorage.getItem("jwt"),
           },
         }
       );
@@ -67,14 +62,12 @@ export default class ProfilePage extends Component {
   };
 
   getMyExp = async () => {
-    const andisToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDlhNTdlMjA2NTQ1NTIzMzA5ZWRjOGYiLCJpYXQiOjE2MjA3NDA4MjJ9.CpamCjh2lRWbvpBv4b4aRNn0TnGRD4fYg3hLFB8WfRw";
     try {
       let resp = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${this.state.userData._id}/experiences`,
+        `/profile/${this.state.userData._id}/experiences`,
         {
           headers: {
-            Authorization: "Bearer " + andisToken,
+            Authorization: 'Bearer ' + localStorage.getItem("jwt"),
           },
         }
       );
