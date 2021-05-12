@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-const SignUp = () => {
+
+const Signin = () => {
   const history = useHistory();
-  const [username, setName] = useState("");
   const [password, setPasword] = useState("");
   const [email, setEmail] = useState("");
 
   const PostData = () => {
-    fetch("/login/signup", {
+    fetch("/login/signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
         password,
         email,
       }),
@@ -25,8 +24,10 @@ const SignUp = () => {
         if (data.error) {
           console.log(data.error);
         } else {
-          console.log(data.message);
-          history.push("/signin");
+          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          // console.log(data.message);
+          history.push("/");
         }
       })
       .catch((err) => {
@@ -35,15 +36,9 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div >
+      <div >
         <h2>Linkdin</h2>
-        <input
-          type="text"
-          placeholder="name"
-          value={username}
-          onChange={(e) => setName(e.target.value)}
-        />
         <input
           type="text"
           placeholder="email"
@@ -60,14 +55,14 @@ const SignUp = () => {
         <button
           onClick={() => PostData()}
         >
-          SignUP
+          Signin
         </button>
         <h5>
-          <Link to="/signin">Already have an account ?</Link>
+          <Link to="/signup">Dont have an account ?</Link>
         </h5>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default Signin;

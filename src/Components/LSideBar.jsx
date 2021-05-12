@@ -68,7 +68,7 @@ export default class LSideBar extends Component {
               className='mt-2 text-center'
               style={{ fontSize: '15px' }}
             >
-              {this.props.user.name} {this.props.user.surname}
+              {this.props.user.username} {this.props.user.surname}
               <div className='text-center muted' style={{ fontSize: '12px' }}>
                 {this.props.user.title}
               </div>
